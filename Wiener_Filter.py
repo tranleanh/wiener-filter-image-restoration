@@ -4,17 +4,9 @@ from numpy.fft import fft2, ifft2
 from scipy.signal import gaussian, convolve2d
 import matplotlib.pyplot as plt
 
-def blur(img, mode = 'motion', kernel_size = 3):
-	# mode = 'box' or 'gaussian' or 'motion'
+def blur(img, kernel_size = 3):
 	dummy = np.copy(img)
-	if mode == 'box':
-		h = np.ones((kernel_size, kernel_size)) / kernel_size ** 2
-	elif mode == 'gaussian':
-		h = gaussian(kernel_size, kernel_size / 3).reshape(kernel_size, 1)
-		h = np.dot(h, h.transpose())
-		h /= np.sum(h)
-	elif mode == 'motion':
-		h = np.eye(kernel_size) / kernel_size
+	h = np.eye(kernel_size) / kernel_size
 	dummy = convolve2d(dummy, h, mode = 'valid')
 	return dummy
 
@@ -51,7 +43,7 @@ if __name__ == '__main__':
 	img = rgb2gray(plt.imread(file_name))
 
 	# Blur the image
-	blurred_img = blur(img, mode = 'motion', kernel_size = 15)
+	blurred_img = blur(img, kernel_size = 15)
 
 	# Add Gaussian noise
 	noisy_img = add_gaussian_noise(blurred_img, sigma = 20)
