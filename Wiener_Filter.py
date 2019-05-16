@@ -1,3 +1,11 @@
+/* 
+# April 22, 2019
+# Tran Le Anh - MSc Student in Computer Vision
+# Dept. of Electronics Engineering, Myongji University, South Korea
+# tranleanh.nt@gmail.com
+# https://sites.google.com/view/leanhtran
+*/
+
 import os
 import numpy as np
 from numpy.fft import fft2, ifft2
